@@ -23,4 +23,9 @@ public class University {
 
     @Column(name = "website", nullable = false, unique = true)
     private String website;
+
+    public University(String name, String website) {
+        this.name = name;
+        this.website = website;
+    }
 }
