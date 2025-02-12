@@ -7,6 +7,7 @@ import com.example.test.dto.UniversityDto;
 import com.example.test.service.CodeService;
 import com.example.test.service.FieldService;
 import com.example.test.service.UniversityService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +25,16 @@ public class UniversityController {
     private FieldService fieldService;
     private CodeService codeService;
 
+    @Operation(summary = "Create university",
+            description = "Take DTO, save in bd and return saved object.")
     @PostMapping
     public ResponseEntity<UniversityDto> createUniversity(@RequestBody UniversityDto universityDto){
         UniversityDto university = universityService.create(universityDto);
         return new ResponseEntity<>(university, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Open university page by id",
+            description = "Take id, find university with such id, find fields of studying for this university, find code for each field and build full object.")
     @GetMapping("/page/{id}")
     public ResponseEntity<UniversityAndFieldDto> getUniversityById(@PathVariable("id") Long universityId){
         // Получаем универы по id
@@ -51,6 +56,8 @@ public class UniversityController {
         return ResponseEntity.ok(universityAndFieldDto);
     }
 
+    @Operation(summary = "Filter universities by field of studied code",
+            description = "Take codeID, find fields for this codID, get universities for this fields and returns UniversityDTO list.")
     @GetMapping("{code}")
     public ResponseEntity<List<UniversityDto>> getUniversityByCodeFilter(@PathVariable("code") Long code){
         List<FieldDto> fields = fieldService.getFieldsByCode(code);
@@ -67,12 +74,14 @@ public class UniversityController {
         return ResponseEntity.ok(universities);
     }
 
+    @Operation(summary = "Open universities page. Get all universities.")
     @GetMapping
     public ResponseEntity<List<UniversityDto>> getAllUniversity(){
         List<UniversityDto> universityDtos = universityService.getAll();
         return ResponseEntity.ok(universityDtos);
     }
 
+    @Operation(summary = "Update university by id")
     @PutMapping("{id}")
     public ResponseEntity<UniversityDto> updateUniversity(@PathVariable("id") Long universityId,
                                                           @RequestBody UniversityDto universityDto){
@@ -80,6 +89,7 @@ public class UniversityController {
         return ResponseEntity.ok(universityDto1);
     }
 
+    @Operation(summary = "Delete university by id")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteUniversity(@PathVariable("id") Long universityId){
         universityService.delete(universityId);
