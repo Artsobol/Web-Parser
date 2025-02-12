@@ -8,4 +8,5 @@ import lombok.Data;
 public class CodeDto {
     private Long id;
     private String title;
+    private String description;
 }
