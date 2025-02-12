@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// Swagger path: http://localhost:8080/swagger-ui/index.html#/
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/universities")
