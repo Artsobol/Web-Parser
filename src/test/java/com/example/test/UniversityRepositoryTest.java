@@ -2,6 +2,7 @@ package com.example.test;
 
 import com.example.test.entity.University;
 import com.example.test.repository.UniversityRepository;
+import jakarta.transaction.Transactional;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
+@Transactional
 public class UniversityRepositoryTest {
     @Autowired
     private UniversityRepository universityRepository;
@@ -46,13 +48,16 @@ public class UniversityRepositoryTest {
     public void UniversityRepository_GetById_ReturnRightUniversity(){
         University university = new University("ITMO", "site");
         University university2 = new University("ITMO2", "site2");
-        universityRepository.save(university);
-        universityRepository.save(university2);
 
-        Optional<University> universityChecked = universityRepository.findById(1L);
+        University savedUniversity1 = universityRepository.save(university);
+        University savedUniversity2 = universityRepository.save(university2);
+
+        Long actualId = savedUniversity1.getId();
+
+        Optional<University> universityChecked = universityRepository.findById(actualId);
 
         Assertions.assertThat(universityChecked).isNotEmpty();
-        Assertions.assertThat(universityChecked.get().getId()).isEqualTo(1L);
+        Assertions.assertThat(universityChecked.get().getId()).isEqualTo(actualId);
     }
 
     @Test
@@ -71,14 +76,16 @@ public class UniversityRepositoryTest {
         University university = new University("ITMO", "site");
         University university2 = new University("ITMO2", "site2");
         University university3 = new University("ITMO3", "site3");
-        universityRepository.save(university);
-        universityRepository.save(university2);
-        universityRepository.save(university3);
-        List<Long> ids = Arrays.asList(1L, 2L);
+
+        University savedUniversity1 = universityRepository.save(university);
+        University savedUniversity2 = universityRepository.save(university2);
+        University savedUniversity3 = universityRepository.save(university3);
+
+        List<Long> ids = Arrays.asList(savedUniversity1.getId(), savedUniversity2.getId());
 
         List<University> universityList = universityRepository.findByIdIn(ids);
 
         Assertions.assertThat(universityList.size()).isEqualTo(2);
-        Assertions.assertThat(universityList.get(0)).isEqualTo(university);
+        Assertions.assertThat(universityList.get(0).getId()).isEqualTo(savedUniversity1.getId());
     }
 }

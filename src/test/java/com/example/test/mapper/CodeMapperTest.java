@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 public class CodeMapperTest {
     @Test
     public void CodeMapper_mapToCodeDto(){
-        Code code = new Code(1L, "title");
-        CodeDto codeDto = new CodeDto(1L, "title");
+        Code code = new Code(1L, "title", "description");
+        CodeDto codeDto = new CodeDto(1L, "title", "description");
 
         CodeDto codeDto2 = CodeMapper.mapToCodeDto(code);
 
@@ -18,8 +18,8 @@ public class CodeMapperTest {
 
     @Test
     public void CodeMapper_mapToCode(){
-        Code code = new Code(1L, "title");
-        CodeDto codeDto = new CodeDto(1L, "title");
+        Code code = new Code(1L, "title", "description");
+        CodeDto codeDto = new CodeDto(1L, "title", "description");
 
         Code code2 = CodeMapper.mapToCode(codeDto);
 
