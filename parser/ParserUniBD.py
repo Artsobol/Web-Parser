@@ -96,7 +96,7 @@ def parse_programs():
             '.card__code') else None
 
         if code is None:
-            code = 000000
+            code = "None"
 
         university_id = get_or_create_university(conn, university, website)
 
