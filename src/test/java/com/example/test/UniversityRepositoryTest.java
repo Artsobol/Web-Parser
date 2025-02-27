@@ -46,13 +46,13 @@ public class UniversityRepositoryTest {
     public void UniversityRepository_GetById_ReturnRightUniversity(){
         University university = new University("ITMO", "site");
         University university2 = new University("ITMO2", "site2");
-        universityRepository.save(university);
+        University savedUniversity = universityRepository.save(university);
         universityRepository.save(university2);
 
-        Optional<University> universityChecked = universityRepository.findById(1L);
+        Optional<University> universityChecked = universityRepository.findById(savedUniversity.getId());
 
         Assertions.assertThat(universityChecked).isNotEmpty();
-        Assertions.assertThat(universityChecked.get().getId()).isEqualTo(1L);
+        Assertions.assertThat(universityChecked.get().getId()).isEqualTo(savedUniversity.getId());
     }
 
     @Test
@@ -71,10 +71,10 @@ public class UniversityRepositoryTest {
         University university = new University("ITMO", "site");
         University university2 = new University("ITMO2", "site2");
         University university3 = new University("ITMO3", "site3");
-        universityRepository.save(university);
-        universityRepository.save(university2);
-        universityRepository.save(university3);
-        List<Long> ids = Arrays.asList(1L, 2L);
+        University savedUniversity = universityRepository.save(university);
+        University savedUniversity2 = universityRepository.save(university2);
+        University savedUniversity3 = universityRepository.save(university3);
+        List<Long> ids = Arrays.asList(savedUniversity.getId(), savedUniversity2.getId());
 
         List<University> universityList = universityRepository.findByIdIn(ids);
 
