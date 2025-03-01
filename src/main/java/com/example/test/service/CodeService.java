@@ -39,7 +39,7 @@ public class CodeService implements IService<CodeDto> {
     @Override
     public CodeDto update(Long Id, CodeDto updated) {
         Code code = codeRepository.findById(Id).orElseThrow(() ->
-                        new ResourceNotFoundException("University isn't found with this id: " + Id));
+                new ResourceNotFoundException("University isn't found with this id: " + Id));
         code.setTitle(updated.getTitle());
 
         Code code2 = codeRepository.save(code);

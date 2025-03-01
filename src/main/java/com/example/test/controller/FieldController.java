@@ -8,6 +8,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+//@AllArgsConstructor
+//@RestController
+//@RequestMapping("/fields")
+//public class FieldController {
+//    private FieldService fieldService;
+//
+//    @Operation(summary = "Create field if study",
+//            description = "Take DTO, save it in bd and return saved object.")
+//    @PostMapping
+//    public ResponseEntity<FieldDto> createField(@RequestBody FieldDto fieldDto){
+//        FieldDto fieldDto1 = fieldService.create(fieldDto);
+//        return new ResponseEntity<>(fieldDto1, HttpStatus.CREATED);
+//    }
+//}
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/fields")

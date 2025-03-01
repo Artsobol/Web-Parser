@@ -19,6 +19,7 @@ public class Field {
     private Long id;
 
     @Column(name = "code", nullable = false)
+//    @Column(name = "code")
     private Long code;
 
     @Column(name = "university_id", nullable = false)
