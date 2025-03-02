@@ -19,27 +19,35 @@ def connect_db():
     return psycopg2.connect(**DB_PARAMS)
 
 def ensure_tables_exist():
-        conn = connect_db()
-        with conn.cursor() as cur:
-            cur.execute("""
-                CREATE TABLE IF NOT EXISTS university (
-                    id SERIAL PRIMARY KEY,
-                    name TEXT UNIQUE NOT NULL,
-                    website TEXT
-                );
-            """)
-            cur.execute("""
-                CREATE TABLE IF NOT EXISTS field (
-                    id SERIAL PRIMARY KEY,
-                    university_id INTEGER REFERENCES university(id) ON DELETE CASCADE,
-                    cost INTEGER,
-                    free_place_quantity INTEGER,
-                    last_update_date DATE DEFAULT CURRENT_DATE,
-                    code TEXT
-                );
-            """)
-            conn.commit()
-        conn.close()
+    conn = connect_db()
+    with conn.cursor() as cur:
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS university (
+                id SERIAL PRIMARY KEY,
+                name TEXT UNIQUE NOT NULL,
+                website TEXT
+            );
+        """)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS field (
+                id SERIAL PRIMARY KEY,
+                university_id INTEGER REFERENCES university(id) ON DELETE CASCADE,
+                cost INTEGER,
+                free_place_quantity INTEGER,
+                last_update_date DATE DEFAULT CURRENT_DATE,
+                code INTEGER -- ссылается на таблицу code, а не TEXT
+            );
+        """)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS code (
+                id SERIAL PRIMARY KEY,
+                title TEXT UNIQUE NOT NULL,
+                description TEXT
+            );
+        """)
+        conn.commit()
+    conn.close()
+
 
 # Функция для добавления университета
 def get_or_create_university(conn, name, website):
