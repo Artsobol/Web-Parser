@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Build containers
+        run: docker-compose -f compose.yaml build
+
+      - name: Run containers
+        run: docker-compose -f compose.yaml up -d
+
+      - name: (Optional) Wait or test
+        run: |
+          echo "Containers are up. Add your tests here if needed."
+          sleep 5  # ждём 5 секунд для демонстрации
+
+      - name: Stop containers
+        run: docker-compose -f compose.yaml down
