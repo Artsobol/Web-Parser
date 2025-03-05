@@ -1,0 +1,269 @@
+.search-sort-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 5px;
+  max-width: 600px;
+  margin: 20px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  background-color: #f4f4f4;
+  border: 2px solid #ccc;
+  border-radius: 50px;
+  width: 300px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: none;
+  width: 200px;
+  height: 20px;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px;
+  outline: none;
+  margin-left: 10px;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.search-button {
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+}
+
+.search-button:hover {
+  background: #ccc;
+}
+
+.search-box {
+  border: 1px solid transparent;
+}
+
+.search-icon {
+  width: 24px;
+  height: 24px;
+  color: black;
+}
+
+.sort-options {
+  display: flex;
+  gap: 10px;
+}
+
+.sort-button {
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  padding: 8px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+  text-align: right;
+  align-items: center;
+  gap: 8px;
+  margin-left: 5px;
+  transition: background 0.2s ease;
+}
+
+.sort-button:hover {
+  background: #f0f0f0;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.data-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.program-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.program-card:hover {
+  transform: translateY(-5px);
+}
+
+.program-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+h2 {
+  color: #a62416;
+  margin: 0;
+}
+
+.faculty {
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+}
+
+.university-badge {
+  background: #a62416;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.program-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: #fafafa;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.program-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.program-column p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin: 0;
+}
+
+.program-column strong {
+  white-space: nowrap;
+}
+
+.program-column span {
+  text-align: right;
+  font-weight: 600;
+}
+
+.cost {
+  font-size: 18px;
+  font-weight: bold;
+  color: #a62416;
+}
+
+h3 {
+  color: #a62416;
+  margin-bottom: 5px;
+}
+
+a {
+  color: #0056b3;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.section1 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('./images/background.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.section1-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.section1-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.section1-title {
+  font-size: 4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.2;
+  letter-spacing: 2px;
+  animation: fadeIn 1.5s ease-in-out;
+  color: #ffffff !important;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.section1-title span {
+  display: block;
+}
+
+.section1-subtitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #f0c14b;
+}
+
+.section1-text {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-top: 20px;
+  line-height: 1.5;
+  opacity: 1;
+}
